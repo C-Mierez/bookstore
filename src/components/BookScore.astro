@@ -1,0 +1,8 @@
+---
+import { SCORE_API_ENDPOINT } from "astro:env/server";
+
+const res = await fetch(SCORE_API_ENDPOINT);
+const scoreValue = await res.text();
+---
+
+<p class="text-sm text-neutral-300">Rating of <span class="text-white font-bold">{scoreValue}</span>/ 5</p>

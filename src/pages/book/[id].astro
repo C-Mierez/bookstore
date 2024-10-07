@@ -1,7 +1,10 @@
 ---
+import BookScore from "@/components/BookScore.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
 import { SHOW_BUY_OPTION } from "astro:env/server";
+
+export const prerender = true;
 
 export async function getStaticPaths() {
     const books = await getCollection("books");
@@ -28,7 +31,7 @@ const { Content } = await render(book);
     </h1>
     <div class="flex px-12 items-start gap-16 max-w-screen-lg mx-auto">
         <aside class="sticky top-16 h-min flex flex-col gap-6">
-            <a href="/" class="block hover:underline text-neutral-300 hover:text-white">{"← Back to Home"}</a>
+            <a href="/" class="block hover:underline text-neutral-300 hover:text-white text-sm">{"← Back to Home"}</a>
             <img class="h-auto w-72 rounded-lg" src={`/${data.img}`} alt={data.title} transition:name={`img-${slug}`} />
             {
                 SHOW_BUY_OPTION && (
@@ -40,7 +43,9 @@ const { Content } = await render(book);
                     </a>
                 )
             }
-            <p class="font-xs text-neutral-300">Rating of <span id="score" class="text-white font-bold"></span>/ 5</p>
+            <BookScore server:defer>
+                <span slot="fallback" class="block text-neutral-300 text-xs"> Loading... </span>
+            </BookScore>
         </aside>
 
         <main class="grid place-items-center gap-8">
@@ -52,17 +57,3 @@ const { Content } = await render(book);
         </main>
     </div>
 </Layout>
-
-<script>
-    import { SCORE_API_ENDPOINT } from "astro:env/client";
-
-    const scoreElement = document.querySelector("#score");
-
-    fetch(SCORE_API_ENDPOINT)
-        .then((res) => res.text())
-        .then((data) => {
-            if (scoreElement) {
-                scoreElement.innerHTML = data;
-            }
-        });
-</script>
