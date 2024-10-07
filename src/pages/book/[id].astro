@@ -1,0 +1,41 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+    const books = await getCollection("books");
+
+    return books.map((book) => {
+        return {
+            params: {
+                id: book.slug,
+            },
+            props: book,
+        };
+    });
+}
+
+const book = Astro.props;
+const { data } = book;
+
+const { Content } = await render(book);
+---
+
+<Layout title={`${data.title} - Bookstore`}>
+    <h1 class="text-3xl font-bold w-fit mx-auto py-16">
+        {data.title}
+    </h1>
+    <div class="flex px-12 items-start gap-16 max-w-screen-lg mx-auto">
+        <aside class="sticky top-16 h-min">
+            <img class="h-auto w-72 rounded-lg" src={`/${data.img}`} alt={data.title} />
+        </aside>
+
+        <main class="grid place-items-center gap-8">
+            <div class="max-w-prose prose prose-neutral prose-invert">
+                <Content />
+                <Content />
+                <Content />
+            </div>
+        </main>
+    </div>
+</Layout>
