@@ -2,11 +2,12 @@
 title: Refactoring
 author: Martin Fowler
 img: refactoring.jpg
+color: "#E21E26"
 readtime: 355
 description: Buenas prácticas para refactorizar código
 buy:
-  spain: https://amzn.to/3XLYZ2H
-  usa: https://www.amazon.com/-/es/Martin-Fowler/dp/0321336380
+    spain: https://amzn.to/3XLYZ2H
+    usa: https://www.amazon.com/-/es/Martin-Fowler/dp/0321336380
 ---
 
 Martin Fowler’s guide to reworking bad code into well-structured code

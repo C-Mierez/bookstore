@@ -6,6 +6,7 @@ const booksCollection = defineCollection({
         title: z.string(),
         author: z.string(),
         img: z.string(),
+        color: z.string(),
         readtime: z.number(),
         description: z.string(),
         buy: z.object({

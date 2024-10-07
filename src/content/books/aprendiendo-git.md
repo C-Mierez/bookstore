@@ -2,11 +2,12 @@
 title: Aprendiendo Git y GitHub
 author: Miguel Ángel Durán
 img: aprendiendo-git.jpg
+color: "#F0512F"
 readtime: 224
 description: Aprende a usar Git y GitHub para gestionar tus proyectos de código.
 buy:
-  spain: https://amzn.to/4e3MYLG
-  usa: https://www.amazon.com/-/es/Miguel-%C3%81ngel-Dur%C3%A1n-Garc%C3%ADa/dp/B0D2LPMG6F
+    spain: https://amzn.to/4e3MYLG
+    usa: https://www.amazon.com/-/es/Miguel-%C3%81ngel-Dur%C3%A1n-Garc%C3%ADa/dp/B0D2LPMG6F
 ---
 
 Hoy en día es imposible imaginar el desarrollo de software sin Git. **Según la encuesta de Stack Overflow de 2018, casi el 90% de los desarrolladores usaban Git para manejar su código fuente**. Si te preguntas por qué no hay encuestas más recientes... ¡Es simplemente porque no preguntaron más! Su dominio empezaba a ser tan evidente que no dejaba margen a la curiosidad.

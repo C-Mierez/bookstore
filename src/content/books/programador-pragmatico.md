@@ -2,11 +2,12 @@
 title: Programador Pragmatico
 author: Marco de Paula
 img: programador-pragmatico.jpg
+color: "#544829"
 readtime: 344
 description: Un libro clásico para mejorar en programación
 buy:
-  spain: https://amzn.to/3BaK8WQ
-  usa: https://www.amazon.com/-/es/Andrew-Hunt/dp/020161622X
+    spain: https://amzn.to/3BaK8WQ
+    usa: https://www.amazon.com/-/es/Andrew-Hunt/dp/020161622X
 ---
 
 El programador pragmático es uno de esos raros casos de libros técnicos que se leen, se releen y se vuelven a leer durante años. Tanto si es nuevo en el campo como si es un profesional experimentado, acabará encontrando ideas nuevas cada vez.
