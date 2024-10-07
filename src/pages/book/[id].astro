@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
+import { SHOW_BUY_OPTION } from "astro:env/server";
 
 export async function getStaticPaths() {
     const books = await getCollection("books");
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const book = Astro.props;
-const { data } = book;
+const { data, slug } = book;
 
 const { Content } = await render(book);
 ---
@@ -26,8 +27,20 @@ const { Content } = await render(book);
         {data.title}
     </h1>
     <div class="flex px-12 items-start gap-16 max-w-screen-lg mx-auto">
-        <aside class="sticky top-16 h-min">
-            <img class="h-auto w-72 rounded-lg" src={`/${data.img}`} alt={data.title} />
+        <aside class="sticky top-16 h-min flex flex-col gap-6">
+            <a href="/" class="block hover:underline text-neutral-300 hover:text-white">{"← Back to Home"}</a>
+            <img class="h-auto w-72 rounded-lg" src={`/${data.img}`} alt={data.title} transition:name={`img-${slug}`} />
+            {
+                SHOW_BUY_OPTION && (
+                    <a
+                        class="p-2 rounded-lg font-bold block text-center"
+                        style={{ "background-color": `${data.color}` }}
+                    >
+                        Purchase
+                    </a>
+                )
+            }
+            <p class="font-xs text-neutral-300">Rating of <span id="score" class="text-white font-bold"></span>/ 5</p>
         </aside>
 
         <main class="grid place-items-center gap-8">
@@ -39,3 +52,17 @@ const { Content } = await render(book);
         </main>
     </div>
 </Layout>
+
+<script>
+    import { SCORE_API_ENDPOINT } from "astro:env/client";
+
+    const scoreElement = document.querySelector("#score");
+
+    fetch(SCORE_API_ENDPOINT)
+        .then((res) => res.text())
+        .then((data) => {
+            if (scoreElement) {
+                scoreElement.innerHTML = data;
+            }
+        });
+</script>
